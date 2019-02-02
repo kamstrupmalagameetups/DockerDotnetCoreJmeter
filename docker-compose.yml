@@ -1,0 +1,29 @@
+
+version: '3.5'
+
+services:
+  heatmeterwebapi:
+    container_name: heatmeterwebapi
+    image: heatmeterwebapi:latest
+    build:
+      context: HeatMeterWebApi/
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "44318:80"
+    healthcheck:
+      test: curl --fail -s http://localhost/api/values || exit 1
+      interval: 5s
+      timeout: 10s
+      retries: 1
+      start_period: 40s
+  jmeter:
+    container_name: jmeter
+    image: vmarrazzo/jmeter
+    volumes:
+        - .:/mnt/
+    entrypoint: jmeter  -n -t /mnt/Jmeter/TestPlan.jmx -j /mnt/Jmeter/TestPlan.log -l /mnt/Jmeter/TestPlan.jtl -JSERVERNAME=heatmeterwebapi -JPORTNUMBER=80 
+    depends_on:
+      - heatmeterwebapi
+
