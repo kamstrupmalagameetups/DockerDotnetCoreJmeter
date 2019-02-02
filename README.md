@@ -12,6 +12,9 @@ Here bellow we can read a quick overview of the content and in each folder there
 - Visual Studio
 - [Docker desktop](https://www.docker.com/products/docker-desktop)
 
+# Docker Swarm Lab
+Click [here](https://github.com/kamstrupmalagameetups/DockerDotnetCoreJmeter/tree/master/Docker%20Swarm%20Lab) to follow the Docker Swarm Lab where you will find the instructions in the README.md file to spin up three replicas of a .NET Core 2.2 Web API.
+
 # HeatMeterWebApi
 In this example we are going to show use the basic DotnetCore WebApi Template application.
 
